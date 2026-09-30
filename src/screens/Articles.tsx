@@ -47,7 +47,7 @@ export function ArticleCard({ article }: { article: Article }) {
                 title: article.title,
                 message: `${article.title}\n\n${article.paragraphs.join(
                   '\n\n',
-                )}\n\nBooks Roots Archive`,
+                )}\n\nBook Timeline`,
               }).catch(() =>
                 Alert.alert('Unable to share', 'Please try again.'),
               );

@@ -1,4 +1,4 @@
-package com.booksroots.archive
+package com.booktimeline
 
 import android.app.Application
 import com.facebook.react.PackageList

@@ -4,6 +4,7 @@ import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { StorageProvider, useStorage } from './src/state/Storage';
 import { Loader, Onboarding } from './src/screens/Welcome';
 import { Navigation } from './src/navigation/Navigation';
+import { ScreenBackground } from './src/components/ScreenBackground';
 import { colors } from './src/theme';
 function Application() {
   const [loaded, setLoaded] = useState(false);
@@ -13,12 +14,14 @@ function Application() {
     return <Loader onFinish={finish} />;
   }
   return (
-    <SafeAreaView
-      style={{ flex: 1, backgroundColor: colors.background }}
-      edges={['top', 'bottom', 'left', 'right']}
-    >
-      {data.onboarded ? <Navigation /> : <Onboarding />}
-    </SafeAreaView>
+    <ScreenBackground>
+      <SafeAreaView
+        style={{ flex: 1 }}
+        edges={['top', 'bottom', 'left', 'right']}
+      >
+        {data.onboarded ? <Navigation /> : <Onboarding />}
+      </SafeAreaView>
+    </ScreenBackground>
   );
 }
 export default function App() {

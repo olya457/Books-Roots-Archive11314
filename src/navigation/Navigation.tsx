@@ -84,7 +84,7 @@ export function Navigation() {
         ...DarkTheme,
         colors: {
           ...DarkTheme.colors,
-          background: colors.background,
+          background: 'transparent',
           card: colors.background,
           primary: colors.gold,
           text: colors.text,
@@ -96,7 +96,7 @@ export function Navigation() {
         screenOptions={{
           headerShown: false,
           animation: 'fade_from_bottom',
-          contentStyle: { backgroundColor: colors.background },
+          contentStyle: { backgroundColor: 'transparent' },
         }}
       >
         <Stack.Screen name="Main" component={Tabs} />

@@ -1,16 +1,17 @@
 import { Platform, StyleSheet } from 'react-native';
 export const colors = {
-  background: '#061925',
-  card: '#10314B',
-  tab: '#0D2C4B',
+  background: '#061A13',
+  card: '#12382B',
+  tab: '#0A281E',
   gold: '#D9AB32',
   blue: '#196CA7',
   text: '#FAFAF8',
-  muted: '#B9C7D1',
-  line: '#194661',
+  muted: '#BDCEC4',
+  line: '#28503D',
 };
+export const backgroundGradient = ['#174B36', '#0C3023', colors.background];
 export const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1, backgroundColor: 'transparent' },
   content: { padding: 20, gap: 16, paddingBottom: 32 },
   title: {
     fontFamily: Platform.OS === 'ios' ? 'Georgia' : 'serif',

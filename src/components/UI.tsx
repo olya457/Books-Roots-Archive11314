@@ -131,9 +131,10 @@ export function Header({
         },
       ]}
     >
-      <Text style={[layout.styles.title, { flexGrow: 1, flexShrink: 1 }]}>
-        {title}
-      </Text>
+      <View style={{ flexGrow: 1, flexShrink: 1, gap: 5 }}>
+        <Text style={s.label}>Book Timeline</Text>
+        <Text style={layout.styles.title}>{title}</Text>
+      </View>
       {caption && <Text style={s.label}>{caption}</Text>}
     </View>
   );

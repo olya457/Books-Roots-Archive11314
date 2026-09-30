@@ -1,18 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import {
-  Image,
-  ImageBackground,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { Reveal } from '../components/Reveal';
 import { WebView } from 'react-native-webview';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Button } from '../components/UI';
 import { useStorage } from '../state/Storage';
-import { colors } from '../theme';
+import { colors, styles } from '../theme';
+import { ScreenBackground } from '../components/ScreenBackground';
 import { useScreenLayout } from '../hooks/useScreenLayout';
 const slides = [
   {
@@ -60,6 +54,7 @@ body { display: flex; align-items: center; justify-content: center; }
 const loaderSource = { html: loaderHtml };
 export function Loader({ onFinish }: { onFinish: () => void }) {
   const insets = useSafeAreaInsets();
+  const layout = useScreenLayout();
   const [started, setStarted] = useState(false);
   useEffect(() => {
     if (started) {
@@ -68,11 +63,28 @@ export function Loader({ onFinish }: { onFinish: () => void }) {
     }
   }, [started, onFinish]);
   return (
-    <ImageBackground
-      source={require('../assets/loader-scribe-background.png')}
-      style={{ flex: 1 }}
-      resizeMode="cover"
-    >
+    <ScreenBackground>
+      <View
+        style={[
+          local.loaderBrand,
+          { paddingTop: insets.top, paddingBottom: insets.bottom },
+        ]}
+      >
+        <Image
+          source={require('../assets/logo.png')}
+          accessibilityLabel="Book Timeline logo"
+          style={[
+            local.logo,
+            { width: layout.imageSize, height: layout.imageSize },
+          ]}
+        />
+        <Text
+          accessibilityRole="header"
+          style={[styles.title, local.loaderTitle]}
+        >
+          Book Timeline
+        </Text>
+      </View>
       <View
         pointerEvents="none"
         style={{
@@ -100,7 +112,7 @@ export function Loader({ onFinish }: { onFinish: () => void }) {
           javaScriptEnabled={false}
         />
       </View>
-    </ImageBackground>
+    </ScreenBackground>
   );
 }
 export function Onboarding() {
@@ -142,6 +154,7 @@ export function Onboarding() {
             flex: 1,
           }}
         >
+          <Text style={s.label}>Book Timeline</Text>
           <Text
             style={[
               s.title,
@@ -177,6 +190,22 @@ export function Onboarding() {
   );
 }
 const local = StyleSheet.create({
+  loaderBrand: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 24,
+    gap: 24,
+  },
+  logo: {
+    resizeMode: 'contain',
+    borderRadius: 24,
+  },
+  loaderTitle: {
+    fontSize: 32,
+    textAlign: 'center',
+    color: colors.gold,
+  },
   loaderWebContainer: {
     flex: 1,
     backgroundColor: 'transparent',
